@@ -2,6 +2,7 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
+  // eslint-disable-next-line prettier/prettier
   UnauthorizedException
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -10,7 +11,6 @@ import jwt from 'express-jwt';
 import { expressJwtSecret } from 'jwks-rsa';
 import { promisify } from 'node:util';
 
-// Middleware
 @Injectable()
 export class AuthorizationGuard implements CanActivate {
   private AUTH0_AUDIENCE: string;
@@ -20,11 +20,8 @@ export class AuthorizationGuard implements CanActivate {
     this.AUTH0_AUDIENCE = this.configService.get('AUTH0_AUDIENCE') ?? '';
     this.AUTH0_DOMAIN = this.configService.get('AUTH0_DOMAIN') ?? '';
   }
-  async canActivate(context: ExecutionContext): Promise<boolean> {
-    // const httpContext = context.switchToHttp();
-    // const req = httpContext.getRequest();
-    // const res = httpContext.getResponse();
 
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const { req, res } = GqlExecutionContext.create(context).getContext();
 
     const checkJWT = promisify(
@@ -37,7 +34,7 @@ export class AuthorizationGuard implements CanActivate {
         }),
         audience: this.AUTH0_AUDIENCE,
         issuer: this.AUTH0_DOMAIN,
-        algorithms: ['sha1', 'RS256', 'HS256'],
+        algorithms: ['RS256'],
       }),
     );
 
