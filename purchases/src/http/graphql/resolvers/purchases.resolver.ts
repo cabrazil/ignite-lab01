@@ -8,10 +8,10 @@ import {
   // eslint-disable-next-line prettier/prettier
   Resolver
 } from '@nestjs/graphql';
-import { AuthorizationGuard } from 'src/http/auth/authorization.guard';
-import { AuthUser, CurrentUser } from 'src/http/auth/current-user';
-import { CustomersService } from 'src/services/customers.service';
-import { ProductsService } from 'src/services/products.service';
+import { AuthorizationGuard } from '../../../http/auth/authorization.guard';
+import { AuthUser, CurrentUser } from '../../../http/auth/current-user';
+import { CustomersService } from '../../../services/customers.service';
+import { ProductsService } from '../../../services/products.service';
 import { PurchasesService } from '../../../services/purchases.service';
 import { CreatePurchaseInput } from '../inputs/create-purchase-input';
 
