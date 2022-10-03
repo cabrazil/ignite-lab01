@@ -1,6 +1,7 @@
 # Ignite Lab 01
 
 - NestJS
+- Typescript
 - GraphQL
 - Apache Kafka
 - Next.js
